@@ -2508,7 +2508,11 @@ class X509
      */
     function _decodeIP($ip)
     {
-        return inet_ntop(base64_decode($ip));
+        try {
+            return inet_ntop(base64_decode($ip));
+        } catch (\Exception $ex) {
+            return false;
+        }
     }
 
     /**
